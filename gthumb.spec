@@ -27,6 +27,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
+BuildRequires:	sed >= 4.0
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
 Requires:	libbonobo >= 2.6.0
@@ -47,7 +48,7 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 
 %prep
 %setup -q
-sed -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
+%{__sed} -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
 	data/gthumb.desktop.in
 
 %build
