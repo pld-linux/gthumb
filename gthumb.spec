@@ -9,6 +9,7 @@ Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/gthumb/%{name}-%{version}.tar.gz
 # Source0-md5:	3e4c562bac1cacf057e823c990be7077
 Patch0:		%{name}-locale_names.patch
+Patch1:		%{name}-desktop.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -44,6 +45,7 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 mv po/{no,nb}.po
 
