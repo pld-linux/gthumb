@@ -22,6 +22,8 @@ BuildRequires:	libgnomeprintui-devel >= 2.2.0
 BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libpng-devel
 BuildRequires:	libxml2-devel >= 2.4.0
+Requires(post):	GConf2
+Requires(post):	scrollkeeper
 Requires:	bonobo-activation >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
