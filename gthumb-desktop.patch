@@ -6,7 +6,7 @@ diff -aurN gthumb-2.4.0.orig/data/gthumb.desktop.in gthumb-2.4.0/data/gthumb.des
  _GenericName=
  _Comment=View and organize your images
 -Categories=Application;Graphics;
-+Categories=Application;Graphics;Viewer;
++Categories=Graphics;Viewer;
  Encoding=UTF-8
  Exec=gthumb
  Icon=gthumb.png
