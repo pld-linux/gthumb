@@ -4,27 +4,23 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.1.2
-Release:	2
+Version:	2.1.3
+Release:	1
 License:	GPL
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
-# Source0-md5:	830e291b591ca02fd18dafa92b63879b
+# Source0-md5:	477e48c49ae46a3199738d745c22d468
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-activation-devel >= 2.1.0
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gnome-vfs2-devel >= 2.2.0
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
-BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libbonoboui-devel >= 2.2.0
 BuildRequires:	libglade2-devel >= 2.0.1
-BuildRequires:	libgnome-devel >= 2.2.0
-BuildRequires:	libgnomeprint-devel >= 2.2.0
 BuildRequires:	libgnomeprintui-devel >= 2.2.0
 BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libpng-devel
@@ -32,7 +28,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
-Requires:	bonobo-activation >= 2.2.0
+Requires:	libbonobo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -83,18 +79,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gthumb
 %attr(755,root,root) %{_libdir}/libgthumb.so
 %attr(755,root,root) %{_libdir}/gthumb-image-viewer
 %attr(755,root,root) %{_libdir}/gthumb-catalog-view
 %{_libdir}/%{name}
-%{_desktopdir}/gthumb.desktop
+%{_libdir}/bonobo/servers/*.server
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/gthumb
 %{_datadir}/application-registry/gthumb.applications
-%{_libdir}/bonobo/servers/*.server
-%{_pixmapsdir}/gthumb.png
 %{_mandir}/man1/gthumb.1*
 %{_omf_dest_dir}/%{name}
 %{_sysconfdir}/gconf/schemas/gthumb.schemas
+%{_pixmapsdir}/gthumb.png
+%{_desktopdir}/gthumb.desktop
