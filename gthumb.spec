@@ -12,10 +12,13 @@ Group:		X11/Applications/Graphics
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
 URL:		http://gthumb.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bonobo-activation-devel >= 2.1.0
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gnome-vfs2-devel >= 2.2.0
 BuildRequires:	gtk+2-devel >= 2.2.0
+BuildRequires:	intltool
 BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libbonoboui-devel >= 2.2.0
 BuildRequires:	libglade2-devel >= 2.0.1
@@ -24,6 +27,7 @@ BuildRequires:	libgnomeprint-devel >= 2.2.0
 BuildRequires:	libgnomeprintui-devel >= 2.2.0
 BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libpng-devel
+BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
