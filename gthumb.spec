@@ -2,14 +2,14 @@ Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
 Version:	1.104
-Release:	1
+Release:	2
 License:	GPL
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
 Source0:	http://unc.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-md5.patch
 URL:		http://gthumb.sourceforge.net/
-BuildRequires:	bonobo-activation-devel >= 1.0.0
+BuildRequires:	bonobo-activation-devel >= 2.1.0
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gnome-vfs2-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 2.0.0
@@ -22,6 +22,7 @@ BuildRequires:	libgnomeprintui-devel >= 1.110
 BuildRequires:	libgnomeui-devel >= 2.0.0
 BuildRequires:	libpng-devel
 BuildRequires:	libxml2-devel >= 2.4.0
+Requires:	bonobo-activation >= 2.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
