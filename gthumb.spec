@@ -1,17 +1,13 @@
-
-%define		snap		20030412
-
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.1.9
+Version:	2.3.2
 Release:	1
 License:	GPL
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
-#Source0:	%{name}-%{version}-%{snap}.tar.bz2
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
-# Source0-md5:	8f68df01f42a01bd20069da2ad20147a
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	6e64758d2eeadd9cc08a11dd1b3a1904
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -22,6 +18,7 @@ BuildRequires:	libexif-devel >= 0.5.12
 BuildRequires:	libglade2-devel >= 2.0.1
 BuildRequires:	libgnomeprintui-devel >= 2.4.0
 BuildRequires:	libgnomeui-devel >= 2.4.0
+BuildRequires:	libgphoto2-devel >= 2.1.3
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
@@ -48,8 +45,8 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 %setup -q
 
 %build
-glib-gettextize --copy --force
-intltoolize --copy --force
+#glib-gettextize --copy --force
+#intltoolize --copy --force
 %{__libtoolize}
 %{__aclocal} -I %{_aclocaldir}/gnome2-macros
 %{__autoheader}
