@@ -24,6 +24,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
+BuildRequires:	lockdev-devel
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	libbonobo
