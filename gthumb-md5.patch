@@ -1,0 +1,12 @@
+diff -urN gthumb-1.104.orig/src/dlg-duplicates.c gthumb-1.104/src/dlg-duplicates.c
+--- gthumb-1.104.orig/src/dlg-duplicates.c	Sun Oct  6 18:35:00 2002
++++ gthumb-1.104/src/dlg-duplicates.c	Sun Oct  6 18:35:21 2002
+@@ -39,7 +39,7 @@
+ #include "gthumb-init.h"
+ #include "gthumb-window.h"
+ #include "file-utils.h"
+-#include "md5.h"
++#include "libgthumb/md5.h"
+ #include "thumb-loader.h"
+ 
+ #ifdef WORDS_BIGENDIAN
