@@ -1,19 +1,19 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.3.3
+Version:	2.4.0
 Release:	1
 License:	GPL
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	d9be6b9812116d01fa0d6c5325eb6eda
+Source0:	http://dl.sourceforge.net/gthumb/%{name}-%{version}.tar.gz
+# Source0-md5:	3e4c562bac1cacf057e823c990be7077
+Patch0:		%{name}-locale_names.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gnome-common
 BuildRequires:	gnome-vfs2-devel >= 2.4.0
-BuildRequires:	intltool
 BuildRequires:	libexif-devel >= 0.5.12
 BuildRequires:	libglade2-devel >= 2.0.1
 BuildRequires:	libgnomeprintui-devel >= 2.4.0
@@ -24,7 +24,6 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
-BuildRequires:	lockdev-devel
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	libbonobo
@@ -44,10 +43,11 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 
 %prep
 %setup -q
+%patch0 -p1
+
+mv po/{no,nb}.po
 
 %build
-#glib-gettextize --copy --force
-#intltoolize --copy --force
 %{__libtoolize}
 %{__aclocal} -I %{_aclocaldir}/gnome2-macros
 %{__autoheader}
