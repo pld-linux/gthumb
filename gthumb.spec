@@ -1,20 +1,22 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.4.1
+Version:	2.5.0
 Release:	1
 License:	GPL
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
-Source0:	http://dl.sourceforge.net/gthumb/%{name}-%{version}.tar.gz
-# Source0-md5:	2623ae3e90cfc79ef7b3b7775c046524
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.5/%{name}-%{version}.tar.bz2
+# Source0-md5:	de178ab74d848221ef87f8f182f61f18
 Patch0:		%{name}-locale_names.patch
 URL:		http://gthumb.sourceforge.net/
+BuildRequires:	GConf2-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gnome-common
 BuildRequires:	gnome-vfs2-devel >= 2.4.0
-BuildRequires:	libexif-devel >= 1:0.5.12
+BuildRequires:	intltool >= 0.21
+BuildRequires:	libexif-devel >= 1:0.6.9
 BuildRequires:	libglade2-devel >= 2.0.1
 BuildRequires:	libgnomeprintui-devel >= 2.4.0
 BuildRequires:	libgnomeui-devel >= 2.4.0
@@ -85,7 +87,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/%{name}-image-viewer
 %attr(755,root,root) %{_libdir}/%{name}-catalog-view
-%{_libdir}/%{name}
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/modules
+%attr(755,root,root) %{_libdir}/%{name}/lib*.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/*.so
 %{_libdir}/bonobo/servers/*.server
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/%{name}
