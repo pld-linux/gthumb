@@ -2,11 +2,12 @@ Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
 Version:	1.104
-Release:	0.1
+Release:	1
 License:	GPL
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://unc.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Patch0:		%{name}-md5.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	bonobo-activation-devel >= 1.0.0
 BuildRequires:	glib2-devel >= 2.0.0
@@ -25,6 +26,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define         _omf_dest_dir   %(scrollkeeper-config --omfdir)
 
 %description
 gThumb lets you browse your hard disk, showing you thumbnails of image
@@ -40,6 +42,7 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure
@@ -47,12 +50,20 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
-%find_lang %{name}
+%find_lang %{name} --with-gnome --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+scrollkeeper-update
+
+%postun
+scrollkeeper-update
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -64,9 +75,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gnome-2.0/ui/*.xml
 %dir %{_datadir}/gthumb
 %{_datadir}/gthumb/glade/*.glade2
-%{_datadir}/gthumb/icons/*.xpm
+%{_datadir}/gthumb/icons/*
 %{_datadir}/application-registry/gthumb.applications
 %{_libdir}/bonobo/servers/*.server
 %{_pixmapsdir}/gthumb.png
 %{_mandir}/man1/gthumb.1*
-%doc %{_datadir}/gnome/help/gthumb
+%{_omf_dest_dir}/%{name}
