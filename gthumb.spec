@@ -2,7 +2,7 @@ Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
 Version:	2.6.2
-Release:	1
+Release:	2
 License:	GPL
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
@@ -13,7 +13,7 @@ BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	gnome-common >= 2.8.0
+BuildRequires:	gnome-common >= 2.8.0-2
 BuildRequires:	gnome-vfs2-devel >= 2.6.0
 BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	intltool >= 0.21
@@ -51,6 +51,7 @@ sed -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
 	data/gthumb.desktop.in
 
 %build
+cp /usr/share/gnome-common/data/omf.make .
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
