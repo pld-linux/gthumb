@@ -46,6 +46,8 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 %patch0 -p1
 
 mv po/{no,nb}.po
+sed -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
+	data/gthumb.desktop.in
 
 %build
 %{__libtoolize}
