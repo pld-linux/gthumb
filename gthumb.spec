@@ -60,11 +60,12 @@ intltoolize --copy --force
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm $RPM_BUILD_ROOT/%{_libdir}/%{name}/modules/*.{a,la}
-rm $RPM_BUILD_ROOT/%{_libdir}/*.{a,la}
+rm $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/*.{a,la}
+rm $RPM_BUILD_ROOT%{_libdir}/*.{a,la}
 
 %find_lang %{name} --with-gnome --all-name
 
