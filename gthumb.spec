@@ -4,27 +4,30 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.1.7
+Version:	2.1.8
 Release:	1
 License:	GPL
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
-# Source0-md5:	9c45a5d9639d074262a4f9d04ea42901
+# Source0-md5:	82d0960316ee4700140544a3311f2c3d
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gnome-common
-BuildRequires:	gnome-vfs2-devel >= 2.2.0
+BuildRequires:	gnome-vfs2-devel >= 2.4.0
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
-BuildRequires:	libbonoboui-devel >= 2.3.3-2
+BuildRequires:	libbonoboui-devel >= 2.4.0
+BuildRequires:	libexif-devel >= 0.5.12
 BuildRequires:	libglade2-devel >= 2.0.1
-BuildRequires:	libgnomeprintui-devel >= 2.2.0
-BuildRequires:	libgnomeui-devel >= 2.3.3.1-2
+BuildRequires:	libgnomeprintui-devel >= 2.4.0
+BuildRequires:	libgnomeui-devel >= 2.4.0
+BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
+BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
 Requires(post):	GConf2
