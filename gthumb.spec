@@ -12,7 +12,7 @@ Patch0:		%{name}-locale_names.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gnome-common
+BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-vfs2-devel >= 2.4.0
 BuildRequires:	libexif-devel >= 1:0.5.12
 BuildRequires:	libglade2-devel >= 2.0.1
@@ -51,7 +51,7 @@ sed -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
 
 %build
 %{__libtoolize}
-%{__aclocal} -I %{_aclocaldir}/gnome2-macros
+%{__aclocal}
 %{__autoheader}
 %{__automake}
 %{__autoconf}
