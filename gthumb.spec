@@ -59,22 +59,21 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-scrollkeeper-update
-
-%postun
-scrollkeeper-update
+%post	-p /usr/bin/scrollkeeper-update
+%postun	-p /usr/bin/scrollkeeper-update
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README COPYING
+%doc AUTHORS NEWS README
 %attr(755,root,root) %{_bindir}/gthumb
 %{_libexecdir}/gthumb-image-viewer
 %{_libexecdir}/gthumb-catalog-view
 %{_datadir}/applications/gthumb.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
 %dir %{_datadir}/gthumb
+%dir %{_datadir}/gthumb/glade
 %{_datadir}/gthumb/glade/*.glade2
+%dir %{_datadir}/gthumb/icons
 %{_datadir}/gthumb/icons/*
 %{_datadir}/application-registry/gthumb.applications
 %{_libdir}/bonobo/servers/*.server
