@@ -25,8 +25,6 @@ BuildRequires:	libxml2-devel >= 2.4.0
 Requires:	bonobo-activation >= 2.1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 %define         _omf_dest_dir   %(scrollkeeper-config --omfdir)
 
 %description
