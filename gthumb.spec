@@ -1,11 +1,15 @@
+
+%define		snap		20030412
+
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.1.1
+Version:	2.1.2
 Release:	1
 License:	GPL
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
+#Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	bonobo-activation-devel >= 2.1.0
@@ -42,6 +46,13 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 %setup -q
 
 %build
+glib-gettextize --copy --force
+intltoolize --copy --force
+%{__libtoolize}
+%{__aclocal} -I %{_aclocaldir}/gnome2-macros
+%{__autoheader}
+%{__automake}
+%{__autoconf}
 %configure \
 	--disable-schemas-install
 %{__make}
