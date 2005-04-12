@@ -2,7 +2,7 @@ Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
 Version:	2.6.4
-Release:	2
+Release:	3
 License:	GPL v2
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
@@ -28,8 +28,9 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	sed >= 4.0
+Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	scrollkeeper
-Requires(post):	GConf2
+Requires(post,preun):	GConf2
 Requires:	libbonobo >= 2.6.0
 Requires:	gtk+2 >= 2:2.4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -79,15 +80,16 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -rf $RPM_BUILD_ROOT
 
 %post
-umask 022
-/usr/bin/scrollkeeper-update
-%gconf_schema_install
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
+%gconf_schema_install gthumb.schemas
+%scrollkeeper_update_post
+%update_desktop_database_post
+
+%preun
+%gconf_schema_uninstall gthumb.schemas
 
 %postun
-umask 022
-/usr/bin/scrollkeeper-update
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
+%scrollkeeper_update_postun
+%update_desktop_database_postun
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
