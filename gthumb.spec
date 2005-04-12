@@ -73,6 +73,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/*.{a,la}
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}/*.{a,la}
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+rm -rf $RPM_BUILD_ROOT%{_datadir}/application-registry
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -104,7 +105,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/bonobo/servers/*.server
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/%{name}
-%{_datadir}/application-registry/%{name}.applications
 %{_mandir}/man1/%{name}.1*
 %{_omf_dest_dir}/%{name}
 %{_sysconfdir}/gconf/schemas/%{name}.schemas
