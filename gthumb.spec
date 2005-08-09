@@ -28,10 +28,11 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	scrollkeeper
 BuildRequires:	sed >= 4.0
+Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	scrollkeeper
-Requires(post,preun):	GConf2
 Requires:	libbonobo >= 2.6.0
 Requires:	gtk+2 >= 2:2.4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
