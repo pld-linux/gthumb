@@ -1,36 +1,37 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.6.0
+Version:	2.7.1
 Release:	1
-License:	GPL
+License:	GPL v2
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	d78883f36fcc37219660fc87c0c0f1f2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.7/%{name}-%{version}.tar.bz2
+# Source0-md5:	05b9bbfe9d0d1d9f3198a529177db381
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gnome-vfs2-devel >= 2.6.0
-BuildRequires:	gtk+2-devel >= 2:2.4.0
+BuildRequires:	gnome-common >= 2.8.0-2
+BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
+BuildRequires:	gtk+2-devel >= 2:2.6.0
 BuildRequires:	intltool >= 0.21
 BuildRequires:	libexif-devel >= 1:0.6.9
 BuildRequires:	libglade2-devel >= 1:2.4.0
 BuildRequires:	libgnomeprintui-devel >= 2.6.0
-BuildRequires:	libgnomeui-devel >= 2.6.0
+BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libgphoto2-devel >= 2.1.3
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
+BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	scrollkeeper
 Requires(post,postun):	scrollkeeper
-Requires(post):	GConf2
 Requires:	libbonobo >= 2.6.0
-Requires:	gtk+2 >= 2:2.4.0
+Requires:	gtk+2 >= 2:2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,10 +48,11 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 
 %prep
 %setup -q
-sed -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
+%{__sed} -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
 	data/gthumb.desktop.in
 
 %build
+cp /usr/share/gnome-common/data/omf.make .
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
@@ -70,6 +72,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/*.{a,la}
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}/*.{a,la}
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+rm -rf $RPM_BUILD_ROOT%{_datadir}/application-registry
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -77,15 +80,16 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -rf $RPM_BUILD_ROOT
 
 %post
-umask 022
-/usr/bin/scrollkeeper-update
-%gconf_schema_install
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
+%gconf_schema_install gthumb.schemas
+%scrollkeeper_update_post
+%update_desktop_database_post
+
+%preun
+%gconf_schema_uninstall gthumb.schemas
 
 %postun
-umask 022
-/usr/bin/scrollkeeper-update
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
+%scrollkeeper_update_postun
+%update_desktop_database_postun
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -100,9 +104,8 @@ umask 022
 %{_libdir}/bonobo/servers/*.server
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/%{name}
-%{_datadir}/application-registry/%{name}.applications
 %{_mandir}/man1/%{name}.1*
 %{_omf_dest_dir}/%{name}
 %{_sysconfdir}/gconf/schemas/%{name}.schemas
-%{_pixmapsdir}/%{name}.png
+%{_pixmapsdir}/*
 %{_desktopdir}/%{name}.desktop
