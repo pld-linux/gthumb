@@ -22,6 +22,7 @@ BuildRequires:	libglade2-devel >= 1:2.4.0
 BuildRequires:	libgnomeprintui-devel >= 2.6.0
 BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libgphoto2-devel >= 2.1.3
+BuildRequires:	libiptcdata-devel >= 0.2.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
@@ -52,7 +53,7 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 	data/gthumb.desktop.in
 
 %build
-cp /usr/share/gnome-common/data/omf.make .
+%{__gnome_doc_common}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
