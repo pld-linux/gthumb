@@ -59,6 +59,7 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 %{__autoheader}
 %{__automake}
 %{__autoconf}
+LDFLAGS="-L/usr/X11R6/%{_lib}"
 %configure \
 	--disable-schemas-install
 %{__make}
