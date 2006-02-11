@@ -2,12 +2,13 @@ Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
 Version:	2.7.2
-Release:	1
+Release:	2
 License:	GPL v2
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.7/%{name}-%{version}.tar.bz2
 # Source0-md5:	4a9db0c1087f71dfa7fdd80f0307c4a5
+Patch0:		%{name}-exif.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel
@@ -17,7 +18,7 @@ BuildRequires:	gnome-common >= 2.8.0-2
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
 BuildRequires:	gtk+2-devel >= 2:2.6.0
 BuildRequires:	intltool >= 0.21
-BuildRequires:	libexif-devel >= 1:0.6.9
+BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libglade2-devel >= 1:2.4.0
 BuildRequires:	libgnomeprintui-devel >= 2.6.0
 BuildRequires:	libgnomeui-devel >= 2.10.0-2
@@ -49,6 +50,7 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 
 %prep
 %setup -q
+%patch0 -p1
 %{__sed} -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
 	data/gthumb.desktop.in
 
@@ -59,7 +61,6 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 %{__autoheader}
 %{__automake}
 %{__autoconf}
-LDFLAGS="-L/usr/X11R6/%{_lib}"
 %configure \
 	--disable-schemas-install
 %{__make}
