@@ -1,13 +1,13 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.6.8
-Release:	3
+Version:	2.6.9
+Release:	1
 License:	GPL v2
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	9dcc9600feb5e1cab9d876f1a047a621
+# Source0-md5:	56b35aa24d4461d7e0ee3c4dea3c6141
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel
@@ -72,7 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/*.{a,la}
-rm $RPM_BUILD_ROOT%{_libdir}/%{name}/*.{a,la}
+rm $RPM_BUILD_ROOT%{_libdir}/*.{a,la}
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -rf $RPM_BUILD_ROOT%{_datadir}/application-registry
@@ -102,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}-catalog-view
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/modules
-%attr(755,root,root) %{_libdir}/%{name}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/%{name}/modules/*.so
 %{_libdir}/bonobo/servers/*.server
 %{_datadir}/gnome-2.0/ui/*.xml
