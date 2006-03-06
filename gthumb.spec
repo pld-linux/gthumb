@@ -1,13 +1,14 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.6.8
-Release:	3
+Version:	2.7.4
+Release:	1
 License:	GPL v2
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	9dcc9600feb5e1cab9d876f1a047a621
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.7/%{name}-%{version}.tar.bz2
+# Source0-md5:	7fdd6a6ded5abae5878e6e5b4bc85135
+Patch0:		%{name}-desktop.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel
@@ -15,13 +16,14 @@ BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	gnome-common >= 2.8.0-2
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
-BuildRequires:	gtk+2-devel >= 2:2.4.0
+BuildRequires:	gtk+2-devel >= 2:2.6.0
 BuildRequires:	intltool >= 0.21
-BuildRequires:	libexif-devel >= 1:0.6.9
+BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libglade2-devel >= 1:2.4.0
 BuildRequires:	libgnomeprintui-devel >= 2.6.0
 BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libgphoto2-devel >= 2.1.3
+BuildRequires:	libiptcdata-devel >= 0.2.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
@@ -29,12 +31,9 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
-BuildRequires:	sed >= 4.0
-Requires(post,preun):	GConf2
-Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	scrollkeeper
 Requires:	libbonobo >= 2.6.0
-Requires:	gtk+2 >= 2:2.4.0
+Requires:	gtk+2 >= 2:2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,11 +50,10 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 
 %prep
 %setup -q
-%{__sed} -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
-	data/gthumb.desktop.in
+%patch0 -p1
 
 %build
-cp /usr/share/gnome-common/data/omf.make .
+%{__gnome_doc_common}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
