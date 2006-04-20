@@ -1,13 +1,13 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.7.5.1
+Version:	2.7.6
 Release:	1
 License:	GPL v2
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	feefaead3582c0c3aa510bd3d2da93b1
+# Source0-md5:	7ba4f37e4cbbc9e220a1a77af48f0449
 Patch0:		%{name}-desktop.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel
@@ -32,8 +32,9 @@ BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
 Requires(post,postun):	scrollkeeper
-Requires:	libbonobo >= 2.6.0
 Requires:	gtk+2 >= 2:2.6.0
+Requires:	hicolor-icon-theme
+Requires:	libbonobo >= 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -71,8 +72,6 @@ rm -rf $RPM_BUILD_ROOT
 
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/*.{a,la}
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}/*.{a,la}
-
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -rf $RPM_BUILD_ROOT%{_datadir}/application-registry
 
 %find_lang %{name} --with-gnome --all-name
@@ -108,5 +107,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/%{name}.1*
 %{_omf_dest_dir}/%{name}
 %{_sysconfdir}/gconf/schemas/%{name}.schemas
-%{_pixmapsdir}/*
+%{_iconsdir}/hicolor/*/apps/*.png
 %{_desktopdir}/%{name}.desktop
