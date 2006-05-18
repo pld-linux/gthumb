@@ -73,6 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/*.{a,la}
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}/*.{a,la}
 rm -rf $RPM_BUILD_ROOT%{_datadir}/application-registry
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/zh_HK
 
 %find_lang %{name} --with-gnome --all-name
 
