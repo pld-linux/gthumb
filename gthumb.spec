@@ -1,40 +1,43 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.6.9
-Release:	1
+Version:	2.7.7
+Release:	2
 License:	GPL v2
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	56b35aa24d4461d7e0ee3c4dea3c6141
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.7/%{name}-%{version}.tar.bz2
+# Source0-md5:	cb2fac94310bd6289b5a31b7a9fc50db
+Patch0:		%{name}-desktop.patch
 URL:		http://gthumb.sourceforge.net/
-BuildRequires:	GConf2-devel
-BuildRequires:	ORBit2-devel
+BuildRequires:	GConf2-devel >= 2.14.0
+BuildRequires:	ORBit2-devel >= 1:2.14.0
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	gnome-common >= 2.8.0-2
-BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
-BuildRequires:	gtk+2-devel >= 2:2.4.0
-BuildRequires:	intltool >= 0.21
-BuildRequires:	libexif-devel >= 1:0.6.9
-BuildRequires:	libglade2-devel >= 1:2.4.0
-BuildRequires:	libgnomeprintui-devel >= 2.6.0
-BuildRequires:	libgnomeui-devel >= 2.10.0-2
-BuildRequires:	libgphoto2-devel >= 2.1.3
+BuildRequires:	gnome-common >= 2.12.0
+BuildRequires:	gnome-vfs2-devel >= 2.15.1
+BuildRequires:	gtk+2-devel >= 2:2.9.2
+BuildRequires:	intltool >= 0.35
+BuildRequires:	libexif-devel >= 1:0.6.13
+BuildRequires:	libglade2-devel >= 1:2.5.1
+BuildRequires:	libgnomeprintui-devel >= 2.12.0
+BuildRequires:	libgnomeui-devel >= 2.15.1
+BuildRequires:	libgphoto2-devel >= 2.1.99
+BuildRequires:	libiptcdata-devel >= 0.2.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.4.0
+BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper
 BuildRequires:	sed >= 4.0
-Requires(post,preun):	GConf2
+Requires(post,preun):	GConf2 >= 2.14.0
 Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	gtk+2 >= 2:2.9.2
 Requires(post,postun):	scrollkeeper
-Requires:	libbonobo >= 2.6.0
-Requires:	gtk+2 >= 2:2.4.0
+Requires:	gtk+2 >= 2:2.9.2
+Requires:	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,11 +54,10 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 
 %prep
 %setup -q
-%{__sed} -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
-	data/gthumb.desktop.in
+%patch0 -p1
 
 %build
-cp /usr/share/gnome-common/data/omf.make .
+%{__gnome_doc_common}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
@@ -72,9 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/*.{a,la}
-rm $RPM_BUILD_ROOT%{_libdir}/*.{a,la}
-
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+rm $RPM_BUILD_ROOT%{_libdir}/%{name}/*.{a,la}
 rm -rf $RPM_BUILD_ROOT%{_datadir}/application-registry
 
 %find_lang %{name} --with-gnome --all-name
@@ -86,6 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_install gthumb.schemas
 %scrollkeeper_update_post
 %update_desktop_database_post
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor
 
 %preun
 %gconf_schema_uninstall gthumb.schemas
@@ -93,6 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 %scrollkeeper_update_postun
 %update_desktop_database_postun
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -102,7 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}-catalog-view
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/modules
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/%{name}/lib*.so
 %attr(755,root,root) %{_libdir}/%{name}/modules/*.so
 %{_libdir}/bonobo/servers/*.server
 %{_datadir}/gnome-2.0/ui/*.xml
@@ -110,5 +112,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/%{name}.1*
 %{_omf_dest_dir}/%{name}
 %{_sysconfdir}/gconf/schemas/%{name}.schemas
-%{_pixmapsdir}/*
+%{_iconsdir}/hicolor/*/apps/*.png
 %{_desktopdir}/%{name}.desktop
