@@ -1,44 +1,46 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.7.7
-Release:	2
+Version:	2.7.8
+Release:	1
 License:	GPL v2
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	cb2fac94310bd6289b5a31b7a9fc50db
+# Source0-md5:	fa5634b5f7fcd5b50dd88fa6036a0042
 Patch0:		%{name}-desktop.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.14.0
-BuildRequires:	ORBit2-devel >= 1:2.14.0
+BuildRequires:	ORBit2-devel >= 1:2.14.2
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gnome-vfs2-devel >= 2.15.1
-BuildRequires:	gtk+2-devel >= 2:2.9.2
+BuildRequires:	gnome-vfs2-devel >= 2.15.90
+BuildRequires:	gtk+2-devel >= 2:2.10.1
 BuildRequires:	intltool >= 0.35
 BuildRequires:	libexif-devel >= 1:0.6.13
-BuildRequires:	libglade2-devel >= 1:2.5.1
+BuildRequires:	libglade2-devel >= 1:2.6.0
 BuildRequires:	libgnomeprintui-devel >= 2.12.0
-BuildRequires:	libgnomeui-devel >= 2.15.1
-BuildRequires:	libgphoto2-devel >= 2.1.99
+BuildRequires:	libgnomeui-devel >= 2.15.90
+BuildRequires:	libgphoto2-devel >= 2.2.1
 BuildRequires:	libiptcdata-devel >= 0.2.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.26
-BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	scrollkeeper
 BuildRequires:	sed >= 4.0
 Requires(post,preun):	GConf2 >= 2.14.0
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	gtk+2 >= 2:2.9.2
+Requires(post,postun):	gtk+2 >= 2:2.10.1
 Requires(post,postun):	scrollkeeper
-Requires:	gtk+2 >= 2:2.9.2
+Requires:	gtk+2 >= 2:2.10.1
 Requires:	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		no_build_with_as_needed	1
 
 %description
 gThumb lets you browse your hard disk, showing you thumbnails of image
@@ -86,15 +88,14 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_install gthumb.schemas
 %scrollkeeper_update_post
 %update_desktop_database_post
-gtk-update-icon-cache -qf %{_datadir}/icons/hicolor
-
+%update_icon_cache hicolor
 %preun
 %gconf_schema_uninstall gthumb.schemas
 
 %postun
 %scrollkeeper_update_postun
 %update_desktop_database_postun
-gtk-update-icon-cache -qf %{_datadir}/icons/hicolor
+%update_icon_cache hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
