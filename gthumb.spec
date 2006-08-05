@@ -40,7 +40,7 @@ Requires:	gtk+2 >= 2:2.10.1
 Requires:	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		no_build_with_as_needed	1
+%define		filterout_ld	(-Wl,)?--as-needed
 
 %description
 gThumb lets you browse your hard disk, showing you thumbnails of image
