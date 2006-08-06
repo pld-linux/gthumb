@@ -1,13 +1,14 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.6.9
+Version:	2.7.8
 Release:	1
 License:	GPL v2
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	56b35aa24d4461d7e0ee3c4dea3c6141
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.7/%{name}-%{version}.tar.bz2
+# Source0-md5:	fa5634b5f7fcd5b50dd88fa6036a0042
+Patch0:		%{name}-desktop.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel
@@ -22,19 +23,21 @@ BuildRequires:	libglade2-devel >= 1:2.4.0
 BuildRequires:	libgnomeprintui-devel >= 2.6.0
 BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libgphoto2-devel >= 2.1.3
+BuildRequires:	libiptcdata-devel >= 0.2.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
-BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	scrollkeeper
 BuildRequires:	sed >= 4.0
 Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	scrollkeeper
-Requires:	libbonobo >= 2.6.0
 Requires:	gtk+2 >= 2:2.4.0
+Requires:	hicolor-icon-theme
+Requires:	libbonobo >= 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,11 +54,10 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 
 %prep
 %setup -q
-%{__sed} -i -e 's/^Categories=Application;/Categories=GTK;GNOME;/' \
-	data/gthumb.desktop.in
+%patch0 -p1
 
 %build
-cp /usr/share/gnome-common/data/omf.make .
+%{__gnome_doc_common}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
@@ -71,10 +73,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm $RPM_BUILD_ROOT%{_libdir}/%{name}/*.{a,la}
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/*.{a,la}
-rm $RPM_BUILD_ROOT%{_libdir}/*.{a,la}
-
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -rf $RPM_BUILD_ROOT%{_datadir}/application-registry
 
 %find_lang %{name} --with-gnome --all-name
@@ -86,6 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_install gthumb.schemas
 %scrollkeeper_update_post
 %update_desktop_database_post
+%update_icon_cache hicolor
 
 %preun
 %gconf_schema_uninstall gthumb.schemas
@@ -93,6 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 %scrollkeeper_update_postun
 %update_desktop_database_postun
+%update_icon_cache hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -102,7 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}-catalog-view
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/modules
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/%{name}/lib*.so
 %attr(755,root,root) %{_libdir}/%{name}/modules/*.so
 %{_libdir}/bonobo/servers/*.server
 %{_datadir}/gnome-2.0/ui/*.xml
@@ -110,5 +112,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/%{name}.1*
 %{_omf_dest_dir}/%{name}
 %{_sysconfdir}/gconf/schemas/%{name}.schemas
-%{_pixmapsdir}/*
+%{_iconsdir}/hicolor/*/apps/*png
 %{_desktopdir}/%{name}.desktop
