@@ -1,28 +1,27 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl):	Przegl±darka obrazków dla GNOME
 Name:		gthumb
-Version:	2.7.8
-Release:	3
+Version:	2.7.9
+Release:	1
 License:	GPL v2
 Vendor:		GNOME
 Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	fa5634b5f7fcd5b50dd88fa6036a0042
+# Source0-md5:	27c8c66d0bc892be0904f625c2b84191
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-libadd.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.14.0
-BuildRequires:	ORBit2-devel >= 1:2.14.2
+BuildRequires:	ORBit2-devel >= 1:2.14.3
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gnome-vfs2-devel >= 2.15.90
-BuildRequires:	gtk+2-devel >= 2:2.10.1
+BuildRequires:	gnome-vfs2-devel >= 2.16.1
+BuildRequires:	gtk+2-devel >= 2:2.10.5
 BuildRequires:	intltool >= 0.35
 BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libglade2-devel >= 1:2.6.0
 BuildRequires:	libgnomeprintui-devel >= 2.12.0
-BuildRequires:	libgnomeui-devel >= 2.15.90
+BuildRequires:	libgnomeui-devel >= 2.16.0
 BuildRequires:	libgphoto2-devel >= 2.2.1
 BuildRequires:	libiptcdata-devel >= 0.2.1
 BuildRequires:	libjpeg-devel
@@ -35,9 +34,9 @@ BuildRequires:	scrollkeeper
 BuildRequires:	sed >= 4.0
 Requires(post,preun):	GConf2 >= 2.14.0
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	gtk+2 >= 2:2.10.1
+Requires(post,postun):	gtk+2 >= 2:2.10.5
 Requires(post,postun):	scrollkeeper
-Requires:	gtk+2 >= 2:2.10.1
+Requires:	gtk+2 >= 2:2.10.5
 Requires:	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,7 +55,6 @@ w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__gnome_doc_common}
