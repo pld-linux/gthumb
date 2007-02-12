@@ -1,5 +1,5 @@
 Summary:	An image viewer and browser for GNOME
-Summary(pl):	Przegl±darka obrazków dla GNOME
+Summary(pl.UTF-8):   PrzeglÄ…darka obrazkÃ³w dla GNOME
 Name:		gthumb
 Version:	2.8.1
 Release:	1
@@ -47,11 +47,11 @@ files. It also lets you view single files (including GIF animations),
 add comments to images, organize images in catalogs, print images,
 view slideshows, set your desktop background, and more.
 
-%description -l pl
-gThumb pozwala na przegl±danie twardego dysku z pokazywaniem
-miniaturek plików z obrazkami. Pozwala tak¿e ogl±daæ pojedyncze pliki
-(w tym animacje GIF), dodawaæ komentarze do obrazków, uk³adaæ obrazki
-w katalogi, drukowaæ obrazki, ogl±daæ slajdy, ustawiaæ t³o biurka itd.
+%description -l pl.UTF-8
+gThumb pozwala na przeglÄ…danie twardego dysku z pokazywaniem
+miniaturek plikÃ³w z obrazkami. Pozwala takÅ¼e oglÄ…daÄ‡ pojedyncze pliki
+(w tym animacje GIF), dodawaÄ‡ komentarze do obrazkÃ³w, ukÅ‚adaÄ‡ obrazki
+w katalogi, drukowaÄ‡ obrazki, oglÄ…daÄ‡ slajdy, ustawiaÄ‡ tÅ‚o biurka itd.
 
 %prep
 %setup -q
