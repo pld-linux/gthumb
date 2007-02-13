@@ -1,5 +1,5 @@
 Summary:	An image viewer and browser for GNOME
-Summary(pl.UTF-8):   Przeglądarka obrazków dla GNOME
+Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
 Version:	2.8.1
 Release:	1
