@@ -5,7 +5,7 @@ diff -aurN gthumb-2.7.3.orig/data/gthumb.desktop.in gthumb-2.7.3/data/gthumb.des
  _Name=gThumb Image Viewer
  _GenericName=Image Viewer
  _Comment=View and organize your images
--Categories=GNOME;GTK;Application;Graphics;Viewer;
+-Categories=GNOME;GTK;Graphics;Viewer;RasterGraphics;2DGraphics;Photography;
 +Categories=GTK;GNOME;Graphics;Viewer;
  Encoding=UTF-8
  Exec=gthumb
