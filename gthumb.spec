@@ -8,7 +8,6 @@ Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.10/%{name}-%{version}.tar.bz2
 # Source0-md5:	a3e785778c262c193f750d4b17e0edfd
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-link.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.16.0
 BuildRequires:	ORBit2-devel >= 1:2.14.4
@@ -57,7 +56,6 @@ w katalogi, drukować obrazki, oglądać slajdy, ustawiać tło biurka itd.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
 
 %build
 %{__gnome_doc_common}
