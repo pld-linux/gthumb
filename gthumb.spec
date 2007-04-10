@@ -1,12 +1,12 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	2.10.1
+Version:	2.10.2
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	80061c224b4822da588330013e5f198e
+# Source0-md5:	fbd779a16ea3c715d2a10911c41937ed
 Patch0:		%{name}-desktop.patch
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.16.0
@@ -34,9 +34,9 @@ BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	scrollkeeper
 BuildRequires:	sed >= 4.0
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	gtk+2 >= 2:2.10.6
+Requires(post,postun):	gtk+2
 Requires(post,postun):	scrollkeeper
-Requires(post,preun):	GConf2 >= 2.16.0
+Requires(post,preun):	GConf2
 Requires:	gtk+2 >= 2:2.10.6
 Requires:	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -75,6 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/libgthumb.{a,la}
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/*.{a,la}
 rm -rf $RPM_BUILD_ROOT%{_datadir}/application-registry
 
