@@ -1,27 +1,27 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	2.10.2
+Version:	2.10.4
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gthumb/2.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	fbd779a16ea3c715d2a10911c41937ed
+# Source0-md5:	090b0cd29cfbcd50c77b4f645472ac38
 Patch0:		%{name}-desktop.patch
 URL:		http://gthumb.sourceforge.net/
-BuildRequires:	GConf2-devel >= 2.16.0
-BuildRequires:	ORBit2-devel >= 1:2.14.4
+BuildRequires:	GConf2-devel >= 2.18.0
+BuildRequires:	ORBit2-devel >= 1:2.14.7
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gnome-vfs2-devel >= 2.16.3
-BuildRequires:	gtk+2-devel >= 2:2.10.6
+BuildRequires:	gnome-common >= 2.18.0
+BuildRequires:	gnome-vfs2-devel >= 2.18.1
+BuildRequires:	gtk+2-devel >= 2:2.10.13
 BuildRequires:	gtkunique >= 0.9.1
-BuildRequires:	intltool >= 0.35
+BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libexif-devel >= 1:0.6.13
-BuildRequires:	libglade2-devel >= 1:2.6.0
-BuildRequires:	libgnomeprintui-devel >= 2.12.0
-BuildRequires:	libgnomeui-devel >= 2.16.1
+BuildRequires:	libglade2-devel >= 1:2.6.1
+BuildRequires:	libgnomeprintui-devel >= 2.18.0
+BuildRequires:	libgnomeui-devel >= 2.18.1
 BuildRequires:	libgphoto2-devel >= 2.2.1
 BuildRequires:	libiptcdata-devel >= 0.2.1
 BuildRequires:	libjpeg-devel
@@ -29,7 +29,7 @@ BuildRequires:	libopenraw-devel >= 0.0.2
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.27
+BuildRequires:	libxml2-devel >= 1:2.6.29
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	scrollkeeper
 BuildRequires:	sed >= 4.0
@@ -37,7 +37,7 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
-Requires:	gtk+2 >= 2:2.10.6
+Requires:	gtk+2 >= 2:2.10.13
 Requires:	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
