@@ -35,7 +35,7 @@ BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	scrollkeeper
 BuildRequires:	sed >= 4.0
-BuildRequires:	unique >= 0.9.1
+BuildRequires:	libunique >= 0.9.1
 BuildRequires:	xorg-lib-libXxf86vm-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
