@@ -2,7 +2,7 @@ Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
 Version:	2.12.1
-Release:	3
+Release:	4
 License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/2.12/%{name}-%{version}.tar.bz2
