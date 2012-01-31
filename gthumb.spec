@@ -112,7 +112,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %gconf_schema_install gthumb.schemas
+%gconf_schema_install gthumb_change_date.schemas
 %gconf_schema_install gthumb-comments.schemas
+%gconf_schema_install gthumb_contact_sheet.schemas
+%gconf_schema_install gthumb-facebook.schemas
+%gconf_schema_install gthumb-file-manager.schemas
 %gconf_schema_install gthumb-gstreamer.schemas
 %gconf_schema_install gthumb-image-viewer.schemas
 %gconf_schema_install gthumb-importer.schemas
@@ -126,6 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_install gthumb_rename_series.schemas
 %gconf_schema_install gthumb_resize_images.schemas
 %gconf_schema_install gthumb_resize_options.schemas
+%gconf_schema_install gthumb_rotate_options.schemas
 %gconf_schema_install gthumb_webalbums.schemas
 %scrollkeeper_update_post
 %update_desktop_database_post
@@ -133,7 +138,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %preun
 %gconf_schema_uninstall gthumb.schemas
+%gconf_schema_uninstall gthumb_change_date.schemas
 %gconf_schema_uninstall gthumb-comments.schemas
+%gconf_schema_uninstall gthumb_contact_sheet.schemas
+%gconf_schema_uninstall gthumb-facebook.schemas
+%gconf_schema_uninstall gthumb-file-manager.schemas
 %gconf_schema_uninstall gthumb-gstreamer.schemas
 %gconf_schema_uninstall gthumb-image-viewer.schemas
 %gconf_schema_uninstall gthumb-importer.schemas
@@ -147,6 +156,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_uninstall gthumb_rename_series.schemas
 %gconf_schema_uninstall gthumb_resize_images.schemas
 %gconf_schema_uninstall gthumb_resize_options.schemas
+%gconf_schema_uninstall gthumb_rotate_options.schemas
 %gconf_schema_uninstall gthumb_webalbums.schemas
 
 %postun
@@ -164,7 +174,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/extensions/*.extension
 %{_datadir}/%{name}
 %{_sysconfdir}/gconf/schemas/gthumb.schemas
+%{_sysconfdir}/gconf/schemas/gthumb_change_date.schemas
+%{_sysconfdir}/gconf/schemas/gthumb_contact_sheet.schemas
 %{_sysconfdir}/gconf/schemas/gthumb-comments.schemas
+%{_sysconfdir}/gconf/schemas/gthumb-facebook.schemas
+%{_sysconfdir}/gconf/schemas/gthumb-file-manager.schemas
 %{_sysconfdir}/gconf/schemas/gthumb-gstreamer.schemas
 %{_sysconfdir}/gconf/schemas/gthumb-image-viewer.schemas
 %{_sysconfdir}/gconf/schemas/gthumb-importer.schemas
@@ -178,6 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/gthumb_rename_series.schemas
 %{_sysconfdir}/gconf/schemas/gthumb_resize_images.schemas
 %{_sysconfdir}/gconf/schemas/gthumb_resize_options.schemas
+%{_sysconfdir}/gconf/schemas/gthumb_rotate_options.schemas
 %{_sysconfdir}/gconf/schemas/gthumb_webalbums.schemas
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_iconsdir}/hicolor/*/apps/*.svg
