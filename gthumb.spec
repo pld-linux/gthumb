@@ -1,12 +1,12 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	2.12.1
-Release:	4
-License:	GPL v2
+Version:	2.14.2
+Release:	1
+License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/2.12/%{name}-%{version}.tar.bz2
-# Source0-md5:	a89be18a9e6f7f9d65cef56f34eb3022
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/2.14/%{name}-%{version}.tar.xz
+# Source0-md5:	449b5487436192835f74972a367d9155
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.20.0
 BuildRequires:	autoconf >= 2.63
@@ -37,7 +37,9 @@ BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	scrollkeeper
 BuildRequires:	sed >= 4.0
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libXxf86vm-devel
+BuildRequires:	xz >= 1:4.999.7
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
