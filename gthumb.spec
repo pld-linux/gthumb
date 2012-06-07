@@ -1,51 +1,52 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	2.14.2
+Version:	3.0.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/2.14/%{name}-%{version}.tar.xz
-# Source0-md5:	449b5487436192835f74972a367d9155
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.0/%{name}-%{version}.tar.xz
+# Source0-md5:	248b44f2fba99701e9185d9a890c4537
 URL:		http://gthumb.sourceforge.net/
-BuildRequires:	GConf2-devel >= 2.20.0
 BuildRequires:	autoconf >= 2.63
-BuildRequires:	automake >= 1:1.9
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	bison
-BuildRequires:	brasero-devel >= 2.28.0
+BuildRequires:	brasero-devel >= 3.2.0
 BuildRequires:	clutter-devel >= 1.0.0
-BuildRequires:	clutter-gtk-devel >= 0.10.0
+BuildRequires:	clutter-gtk-devel >= 1.0.0
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	exiv2-devel >= 0.18
+BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	flex
 BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gnome-doc-utils >= 0.12.0
+BuildRequires:	gsettings-desktop-schemas-devel
 BuildRequires:	gstreamer-devel >= 0.10.0
-BuildRequires:	gtk+2-devel >= 2:2.20.0
+BuildRequires:	gtk+3-devel >= 3.2.0
 BuildRequires:	intltool >= 0.35.5
-BuildRequires:	libgnome-keyring-devel >= 2.28.0
+BuildRequires:	libchamplain-devel >= 0.12
+BuildRequires:	libgnome-keyring-devel >= 3.2.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libopenraw-devel >= 0.0.8
 BuildRequires:	libpng-devel
-BuildRequires:	libsoup-gnome-devel >= 2.26.0
+BuildRequires:	librsvg-devel >= 2.34.0
+BuildRequires:	libsoup-gnome-devel >= 2.36.0
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
-BuildRequires:	libunique-devel >= 1.1.2
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.311
-BuildRequires:	scrollkeeper
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	xorg-lib-libXxf86vm-devel
 BuildRequires:	xz >= 1:4.999.7
+BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
-Requires(post,postun):	scrollkeeper
-Requires(post,preun):	GConf2
-Requires:	gtk+2 >= 2:2.20.0
+Requires:	gsettings-desktop-schemas
+Requires:	gtk+3 >= 3.2.0
 Requires:	hicolor-icon-theme
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
@@ -67,7 +68,7 @@ w katalogi, drukować obrazki, oglądać slajdy, ustawiać tło biurka itd.
 Summary:	gThumb development files
 Summary(pl.UTF-8):	Pliki programistyczne gThumb
 Group:		X11/Development/Libraries
-Requires:	gtk+2-devel >= 2:2.20.0
+Requires:	gtk+3-devel >= 3.2.0
 
 %description devel
 This package provides header files for developing gThumb extensions.
@@ -91,10 +92,8 @@ mv -f po/sr@{Latn,latin}.po
 %{__automake}
 %{__autoconf}
 %configure \
-	--disable-scrollkeeper \
-	--disable-schemas-install \
 	--disable-silent-rules \
-	--enable-openraw
+	--enable-libopenraw
 %{__make}
 
 %install
@@ -105,62 +104,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/extensions/*.{a,la}
 
-%find_lang %{name} --with-gnome --with-omf --all-name
+%find_lang %{name} --with-gnome --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%gconf_schema_install gthumb.schemas
-%gconf_schema_install gthumb_change_date.schemas
-%gconf_schema_install gthumb-comments.schemas
-%gconf_schema_install gthumb_contact_sheet.schemas
-%gconf_schema_install gthumb-facebook.schemas
-%gconf_schema_install gthumb-file-manager.schemas
-%gconf_schema_install gthumb-gstreamer.schemas
-%gconf_schema_install gthumb-image-viewer.schemas
-%gconf_schema_install gthumb-importer.schemas
-%gconf_schema_install gthumb-picasaweb.schemas
-%gconf_schema_install gthumb-pixbuf-savers.schemas
-%gconf_schema_install gthumb-slideshow.schemas
-%gconf_schema_install gthumb_convert_format.schemas
-%gconf_schema_install gthumb_crop_options.schemas
-%gconf_schema_install gthumb_image_print.schemas
-%gconf_schema_install gthumb_photo_importer.schemas
-%gconf_schema_install gthumb_rename_series.schemas
-%gconf_schema_install gthumb_resize_images.schemas
-%gconf_schema_install gthumb_resize_options.schemas
-%gconf_schema_install gthumb_rotate_options.schemas
-%gconf_schema_install gthumb_webalbums.schemas
-%scrollkeeper_update_post
+%glib_compile_schemas
 %update_desktop_database_post
 %update_icon_cache hicolor
 
-%preun
-%gconf_schema_uninstall gthumb.schemas
-%gconf_schema_uninstall gthumb_change_date.schemas
-%gconf_schema_uninstall gthumb-comments.schemas
-%gconf_schema_uninstall gthumb_contact_sheet.schemas
-%gconf_schema_uninstall gthumb-facebook.schemas
-%gconf_schema_uninstall gthumb-file-manager.schemas
-%gconf_schema_uninstall gthumb-gstreamer.schemas
-%gconf_schema_uninstall gthumb-image-viewer.schemas
-%gconf_schema_uninstall gthumb-importer.schemas
-%gconf_schema_uninstall gthumb-picasaweb.schemas
-%gconf_schema_uninstall gthumb-pixbuf-savers.schemas
-%gconf_schema_uninstall gthumb-slideshow.schemas
-%gconf_schema_uninstall gthumb_convert_format.schemas
-%gconf_schema_uninstall gthumb_crop_options.schemas
-%gconf_schema_uninstall gthumb_image_print.schemas
-%gconf_schema_uninstall gthumb_photo_importer.schemas
-%gconf_schema_uninstall gthumb_rename_series.schemas
-%gconf_schema_uninstall gthumb_resize_images.schemas
-%gconf_schema_uninstall gthumb_resize_options.schemas
-%gconf_schema_uninstall gthumb_rotate_options.schemas
-%gconf_schema_uninstall gthumb_webalbums.schemas
-
 %postun
-%scrollkeeper_update_postun
+%glib_compile_schemas
 %update_desktop_database_postun
 %update_icon_cache hicolor
 
@@ -173,31 +128,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/extensions/*.so
 %{_libdir}/%{name}/extensions/*.extension
 %{_datadir}/%{name}
-%{_sysconfdir}/gconf/schemas/gthumb.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_change_date.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_contact_sheet.schemas
-%{_sysconfdir}/gconf/schemas/gthumb-comments.schemas
-%{_sysconfdir}/gconf/schemas/gthumb-facebook.schemas
-%{_sysconfdir}/gconf/schemas/gthumb-file-manager.schemas
-%{_sysconfdir}/gconf/schemas/gthumb-gstreamer.schemas
-%{_sysconfdir}/gconf/schemas/gthumb-image-viewer.schemas
-%{_sysconfdir}/gconf/schemas/gthumb-importer.schemas
-%{_sysconfdir}/gconf/schemas/gthumb-picasaweb.schemas
-%{_sysconfdir}/gconf/schemas/gthumb-pixbuf-savers.schemas
-%{_sysconfdir}/gconf/schemas/gthumb-slideshow.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_convert_format.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_crop_options.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_image_print.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_photo_importer.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_rename_series.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_resize_images.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_resize_options.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_rotate_options.schemas
-%{_sysconfdir}/gconf/schemas/gthumb_webalbums.schemas
+%{_datadir}/GConf/gsettings/gthumb.convert
+%{_datadir}/glib-2.0/schemas/*.gschema.xml
+%{_datadir}/glib-2.0/schemas/*.enums.xml
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_iconsdir}/hicolor/*/apps/*.svg
 %{_desktopdir}/gthumb.desktop
 %{_desktopdir}/gthumb-import.desktop
+%{_mandir}/man1/gthumb.1*
 
 %files devel
 %defattr(644,root,root,755)
