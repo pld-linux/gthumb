@@ -1,12 +1,14 @@
+# TODO: turn on webservices support - it requires gtk-webkit3 >= 1.10 and json-glib >= 0.15 (unstable?)
+#
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	3.0.2
-Release:	2
+Version:	3.2.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.0/%{name}-%{version}.tar.xz
-# Source0-md5:	79d128537a19946e6cee8850e8d72abf
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.2/%{name}-%{version}.tar.xz
+# Source0-md5:	c4d85caae04ab6382e3597b07828590e
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
@@ -18,35 +20,37 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.28.0
+BuildRequires:	glib2-devel >= 1:2.34.0
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gnome-doc-utils >= 0.12.0
 BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gstreamer-devel >= 0.10.0
-BuildRequires:	gtk+3-devel >= 3.2.0
+BuildRequires:	gstreamer-devel >= 1.0.0
+BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
+BuildRequires:	gtk+3-devel >= 3.4.0
 BuildRequires:	intltool >= 0.35.5
 BuildRequires:	libchamplain-devel >= 0.12
-BuildRequires:	libgnome-keyring-devel >= 3.2.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libopenraw-devel >= 0.0.8
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.34.0
+BuildRequires:	libsecret-devel >= 0.11
 BuildRequires:	libsoup-gnome-devel >= 2.36.0
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
+BuildRequires:	libwebp-devel >= 0.2.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz >= 1:4.999.7
+BuildRequires:	yelp-tools
 BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.34.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires:	gsettings-desktop-schemas
-Requires:	gtk+3 >= 3.2.0
+Requires:	gtk+3 >= 3.4.0
 Requires:	hicolor-icon-theme
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
@@ -68,7 +72,7 @@ w katalogi, drukować obrazki, oglądać slajdy, ustawiać tło biurka itd.
 Summary:	gThumb development files
 Summary(pl.UTF-8):	Pliki programistyczne gThumb
 Group:		X11/Development/Libraries
-Requires:	gtk+3-devel >= 3.2.0
+Requires:	gtk+3-devel >= 3.4.0
 
 %description devel
 This package provides header files for developing gThumb extensions.
