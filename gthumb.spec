@@ -1,14 +1,12 @@
-# TODO: turn on webservices support - it requires gtk-webkit3 >= 1.10 and json-glib >= 0.15 (unstable?)
-#
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	3.2.0
+Version:	3.2.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.2/%{name}-%{version}.tar.xz
-# Source0-md5:	c4d85caae04ab6382e3597b07828590e
+# Source0-md5:	ea3bd9249b0cd69090ec446cb7127f8b
 URL:		http://gthumb.sourceforge.net/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
@@ -26,7 +24,9 @@ BuildRequires:	gsettings-desktop-schemas-devel
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
 BuildRequires:	gtk+3-devel >= 3.4.0
+BuildRequires:	gtk-webkit3-devel >= 1.10
 BuildRequires:	intltool >= 0.35.5
+BuildRequires:	json-glib-devel >= 0.16
 BuildRequires:	libchamplain-devel >= 0.12
 BuildRequires:	libjpeg-devel
 BuildRequires:	libopenraw-devel >= 0.0.8
