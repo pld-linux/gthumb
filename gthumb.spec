@@ -17,7 +17,7 @@ BuildRequires:	clutter-gtk-devel >= 1.0.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	flex
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.34.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gsettings-desktop-schemas-devel
