@@ -51,7 +51,7 @@ Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires:	brasero-libs >= 3.2.0
 Requires:	clutter >= 1.12.0
-Requires:	exiv2 >= 0.21
+Requires:	exiv2-libs >= 0.21
 Requires:	glib2 >= 1:2.36.0
 Requires:	gsettings-desktop-schemas
 Requires:	gtk+3 >= 3.10.0
