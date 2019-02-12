@@ -1,13 +1,14 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	3.4.5
-Release:	2
+Version:	3.6.2
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.4/%{name}-%{version}.tar.xz
-# Source0-md5:	4e61136814fab59d8b1c3ebdbede6b56
-URL:		https://wiki.gnome.org/Apps/gthumb
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.6/%{name}-%{version}.tar.xz
+# Source0-md5:	e7c518ebb9270b3adc5a39f19e424b20
+Patch0:		exiv2-0.27.patch
+URL:		https://wiki.gnome.org/Apps/Gthumb
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	bison
@@ -96,6 +97,7 @@ rozszerzeń gThumb.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__intltoolize}
@@ -140,8 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/extensions/*.so
 %{_libdir}/%{name}/extensions/*.extension
 %{_datadir}/%{name}
-%{_datadir}/appdata/gthumb.appdata.xml
-%{_datadir}/GConf/gsettings/gthumb.convert
+%{_datadir}/appdata/org.gnome.gThumb.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.gthumb.enums.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.gthumb.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.gthumb.*.gschema.xml
@@ -149,12 +150,12 @@ rm -rf $RPM_BUILD_ROOT
 # wrong dir?
 %{_iconsdir}/hicolor/16x16/apps/gthumb-symbolic.svg
 %{_iconsdir}/hicolor/scalable/apps/gthumb.svg
-%{_desktopdir}/gthumb.desktop
-%{_desktopdir}/gthumb-import.desktop
+%{_desktopdir}/org.gnome.gThumb.desktop
+%{_desktopdir}/org.gnome.gThumb.Import.desktop
 %{_mandir}/man1/gthumb.1*
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/gthumb-3.4
-%{_pkgconfigdir}/gthumb-3.4.pc
+%{_includedir}/gthumb-3.6
+%{_pkgconfigdir}/gthumb-3.6.pc
 %{_aclocaldir}/gthumb.m4
