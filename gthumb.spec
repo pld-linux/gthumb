@@ -1,32 +1,28 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	3.6.2
+Version:	3.8.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	e7c518ebb9270b3adc5a39f19e424b20
-Patch0:		exiv2-0.27.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.8/%{name}-%{version}.tar.xz
+# Source0-md5:	f2d2fac0ef789446a92162911bf073aa
 URL:		https://wiki.gnome.org/Apps/Gthumb
-BuildRequires:	autoconf >= 2.63
-BuildRequires:	automake >= 1:1.11
 BuildRequires:	bison
 BuildRequires:	brasero-devel >= 3.2.0
 BuildRequires:	clutter-devel >= 1.12.0
 BuildRequires:	clutter-gtk-devel >= 1.0.0
+BuildRequires:	colord-devel >= 1.3
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	flex
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.36.0
-BuildRequires:	gnome-common >= 2.20.0
+BuildRequires:	glib2-devel >= 1:2.38.0
 BuildRequires:	gsettings-desktop-schemas-devel
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
-BuildRequires:	gtk+3-devel >= 3.10.0
+BuildRequires:	gtk+3-devel >= 3.16
 BuildRequires:	gtk-webkit3-devel >= 1.10.0
-BuildRequires:	intltool >= 0.35.5
 BuildRequires:	json-glib-devel >= 0.16
 BuildRequires:	lcms2-devel >= 2.6
 BuildRequires:	libchamplain-devel >= 0.12
@@ -40,23 +36,26 @@ BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libwebp-devel >= 0.2.0
+BuildRequires:	meson >= 0.42.1
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.23
-BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz >= 1:4.999.7
 BuildRequires:	yelp-tools
 BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.36.0
+Requires(post,postun):	glib2 >= 1:2.38.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires:	brasero-libs >= 3.2.0
 Requires:	clutter >= 1.12.0
+Requires:	colord >= 1.3
 Requires:	exiv2-libs >= 0.21
-Requires:	glib2 >= 1:2.36.0
+Requires:	glib2 >= 1:2.38.0
 Requires:	gsettings-desktop-schemas
-Requires:	gtk+3 >= 3.10.0
+Requires:	gtk+3 >= 3.16
 Requires:	gtk-webkit3 >= 1.10.0
 Requires:	hicolor-icon-theme
 Requires:	json-glib >= 0.16
@@ -86,7 +85,7 @@ w katalogi, drukować obrazki, oglądać slajdy, ustawiać tło biurka itd.
 Summary:	gThumb development files
 Summary(pl.UTF-8):	Pliki programistyczne gThumb
 Group:		X11/Development/Libraries
-Requires:	gtk+3-devel >= 3.10.0
+Requires:	gtk+3-devel >= 3.16
 
 %description devel
 This package provides header files for developing gThumb extensions.
@@ -97,26 +96,17 @@ rozszerzeń gThumb.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-%{__intltoolize}
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoheader}
-%{__automake}
-%{__autoconf}
-%configure \
-	--disable-silent-rules
-%{__make}
+%meson build \
+	-Dlibchamplain=true
+
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/extensions/*.{a,la}
+%ninja_install -C build
 
 %find_lang %{name} --with-gnome
 
@@ -135,27 +125,26 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog MAINTAINERS NEWS README
+%doc AUTHORS MAINTAINERS NEWS README
 %attr(755,root,root) %{_bindir}/gthumb
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/extensions
 %attr(755,root,root) %{_libdir}/%{name}/extensions/*.so
 %{_libdir}/%{name}/extensions/*.extension
 %{_datadir}/%{name}
-%{_datadir}/appdata/org.gnome.gThumb.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.gthumb.enums.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.gthumb.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.gthumb.*.gschema.xml
+%{_datadir}/metainfo/org.gnome.gThumb.appdata.xml
+%{_desktopdir}/org.gnome.gThumb.desktop
 %{_iconsdir}/hicolor/*x*/apps/gthumb.png
-# wrong dir?
+# XXX: wrong dir?
 %{_iconsdir}/hicolor/16x16/apps/gthumb-symbolic.svg
 %{_iconsdir}/hicolor/scalable/apps/gthumb.svg
-%{_desktopdir}/org.gnome.gThumb.desktop
-%{_desktopdir}/org.gnome.gThumb.Import.desktop
 %{_mandir}/man1/gthumb.1*
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/gthumb-3.6
-%{_pkgconfigdir}/gthumb-3.6.pc
+%{_includedir}/gthumb
+%{_pkgconfigdir}/gthumb-3.8.pc
 %{_aclocaldir}/gthumb.m4
