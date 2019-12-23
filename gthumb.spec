@@ -1,12 +1,12 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	3.8.2
+Version:	3.8.3
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	485394f6d8dc8c9cef398a4d1d5a7ca4
+# Source0-md5:	4d52a1a7c9bda75c317e0c275785e4e0
 URL:		https://wiki.gnome.org/Apps/Gthumb
 BuildRequires:	bison
 BuildRequires:	brasero-devel >= 3.2.0
@@ -137,10 +137,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.gnome.gthumb.*.gschema.xml
 %{_datadir}/metainfo/org.gnome.gThumb.appdata.xml
 %{_desktopdir}/org.gnome.gThumb.desktop
+%{_iconsdir}/hicolor/*x*/apps/org.gnome.gThumb.png
+# XXX: not renamed to org.gnome.gThumb
 %{_iconsdir}/hicolor/*x*/apps/gthumb.png
-# XXX: wrong dir?
-%{_iconsdir}/hicolor/16x16/apps/gthumb-symbolic.svg
-%{_iconsdir}/hicolor/scalable/apps/gthumb.svg
+# XXX: wrong dir
+%{_iconsdir}/hicolor/16x16/apps/org.gnome.gThumb-symbolic.svg
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.gThumb.svg
 %{_mandir}/man1/gthumb.1*
 
 %files devel
