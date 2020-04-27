@@ -1,12 +1,12 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	3.8.3
+Version:	3.10.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	4d52a1a7c9bda75c317e0c275785e4e0
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gthumb/3.10/%{name}-%{version}.tar.xz
+# Source0-md5:	ece4fe6467be1ce79edda1cfa376edc5
 URL:		https://wiki.gnome.org/Apps/Gthumb
 BuildRequires:	bison
 BuildRequires:	brasero-devel >= 3.2.0
@@ -17,12 +17,12 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	flex
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.38.0
+BuildRequires:	glib2-devel >= 1:2.54.0
 BuildRequires:	gsettings-desktop-schemas-devel
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
 BuildRequires:	gtk+3-devel >= 3.16
-BuildRequires:	gtk-webkit3-devel >= 1.10.0
+BuildRequires:	gtk-webkit4-devel >= 1.10.0
 BuildRequires:	json-glib-devel >= 0.16
 BuildRequires:	lcms2-devel >= 2.6
 BuildRequires:	libchamplain-devel >= 0.12
@@ -36,7 +36,7 @@ BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libwebp-devel >= 0.2.0
-BuildRequires:	meson >= 0.42.1
+BuildRequires:	meson >= 0.43
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.23
@@ -46,17 +46,17 @@ BuildRequires:	xz >= 1:4.999.7
 BuildRequires:	yelp-tools
 BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.38.0
+Requires(post,postun):	glib2 >= 1:2.54.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires:	brasero-libs >= 3.2.0
 Requires:	clutter >= 1.12.0
 Requires:	colord >= 1.3
 Requires:	exiv2-libs >= 0.21
-Requires:	glib2 >= 1:2.38.0
+Requires:	glib2 >= 1:2.54.0
 Requires:	gsettings-desktop-schemas
 Requires:	gtk+3 >= 3.16
-Requires:	gtk-webkit3 >= 1.10.0
+Requires:	gtk-webkit4 >= 1.10.0
 Requires:	hicolor-icon-theme
 Requires:	json-glib >= 0.16
 Requires:	lcms2 >= 2.6
@@ -65,8 +65,6 @@ Requires:	librsvg >= 2.34.0
 Requires:	libsecret >= 0.11
 Requires:	libsoup >= 2.42
 Requires:	libwebp >= 0.2.0
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -125,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS MAINTAINERS NEWS README
+%doc AUTHORS MAINTAINERS NEWS README.md
 %attr(755,root,root) %{_bindir}/gthumb
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/extensions
@@ -138,8 +136,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/metainfo/org.gnome.gThumb.appdata.xml
 %{_desktopdir}/org.gnome.gThumb.desktop
 %{_iconsdir}/hicolor/*x*/apps/org.gnome.gThumb.png
-# XXX: not renamed to org.gnome.gThumb
-%{_iconsdir}/hicolor/*x*/apps/gthumb.png
 # XXX: wrong dir
 %{_iconsdir}/hicolor/16x16/apps/org.gnome.gThumb-symbolic.svg
 %{_iconsdir}/hicolor/scalable/apps/org.gnome.gThumb.svg
@@ -148,5 +144,5 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/gthumb
-%{_pkgconfigdir}/gthumb-3.8.pc
+%{_pkgconfigdir}/gthumb-3.10.pc
 %{_aclocaldir}/gthumb.m4
