@@ -1,12 +1,13 @@
+# TODO: libjxl, libjxl_threads >= 0.3.0
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	3.10.4
+Version:	3.12.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	https://download.gnome.org/sources/gthumb/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	4f14621f00444c2db3a19c546672d369
+Source0:	https://download.gnome.org/sources/gthumb/3.12/%{name}-%{version}.tar.xz
+# Source0-md5:	cbf05777971075c57b5d6cf9324567ca
 URL:		https://wiki.gnome.org/Apps/Gthumb
 BuildRequires:	bison
 BuildRequires:	brasero-devel >= 3.2.0
@@ -22,10 +23,12 @@ BuildRequires:	gsettings-desktop-schemas-devel
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
 BuildRequires:	gtk+3-devel >= 3.16
+# webkit2gtk-4.0 or webkit2-3.0; libsoup3 is not supported yet
 BuildRequires:	gtk-webkit4-devel >= 1.10.0
 BuildRequires:	json-glib-devel >= 0.16
 BuildRequires:	lcms2-devel >= 2.6
 BuildRequires:	libchamplain-devel >= 0.12
+BuildRequires:	libheif-devel >= 1.11
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libraw-devel >= 0.14
@@ -145,5 +148,5 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/gthumb
-%{_pkgconfigdir}/gthumb-3.10.pc
+%{_pkgconfigdir}/gthumb.pc
 %{_aclocaldir}/gthumb.m4
