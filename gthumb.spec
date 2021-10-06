@@ -30,6 +30,7 @@ BuildRequires:	lcms2-devel >= 2.6
 BuildRequires:	libchamplain-devel >= 0.12
 BuildRequires:	libheif-devel >= 1.11
 BuildRequires:	libjpeg-devel
+BuildRequires:	libjxl-devel >= 0.3.0
 BuildRequires:	libpng-devel
 BuildRequires:	libraw-devel >= 0.14
 BuildRequires:	librsvg-devel >= 2.34.0
@@ -64,6 +65,7 @@ Requires:	hicolor-icon-theme
 Requires:	json-glib >= 0.16
 Requires:	lcms2 >= 2.6
 Requires:	libchamplain >= 0.12
+Requires:	libjxl >= 0.3.0
 Requires:	librsvg >= 2.34.0
 Requires:	libsecret >= 0.11
 Requires:	libsoup >= 2.42
