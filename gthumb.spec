@@ -10,6 +10,7 @@ Source0:	https://download.gnome.org/sources/gthumb/3.12/%{name}-%{version}.tar.x
 Patch0:		%{name}-libraw.patch
 URL:		https://wiki.gnome.org/Apps/Gthumb
 BuildRequires:	AppStream-devel >= 0.14.6
+BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	brasero-devel >= 3.2.0
 BuildRequires:	clutter-devel >= 1.12.0
