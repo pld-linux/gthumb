@@ -2,7 +2,7 @@ Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
 Version:	3.12.3
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications/Graphics
 Source0:	https://download.gnome.org/sources/gthumb/3.12/%{name}-%{version}.tar.xz
@@ -113,6 +113,9 @@ rozszerzeń gThumb.
 rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
+
+# not supported by glibc (as of 2.38)
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
 
 %find_lang %{name} --with-gnome
 
