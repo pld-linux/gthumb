@@ -1,0 +1,11 @@
+--- gthumb-3.12.6/gthumb/main-migrate-catalogs.c~	2024-03-10 18:14:47.000000000 +0100
++++ gthumb-3.12.6/gthumb/main-migrate-catalogs.c	2025-01-31 00:21:15.426665006 +0100
+@@ -171,7 +171,7 @@
+ 				gboolean    b;
+ 				int         line_ofs;
+ 				/*gboolean    all_keywords;*/
+-				long        date;
++				time_t      date;
+ 				int         date_scope;
+ 
+ 				extension = ".search";
