@@ -46,7 +46,7 @@ BuildRequires:	meson >= 0.43
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.23
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz >= 1:4.999.7
 BuildRequires:	yelp-tools
@@ -104,15 +104,15 @@ rozszerzeń gThumb.
 %patch -P 0 -p1
 
 %build
-%meson build \
+%meson \
 	-Dlibchamplain=true
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 # not supported by glibc (as of 2.38)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
