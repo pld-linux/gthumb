@@ -1,0 +1,35 @@
+From 816883e1d74c4d3f7b379205876a54d45accace9 Mon Sep 17 00:00:00 2001
+From: Paolo Bacchilega <paobac@src.gnome.org>
+Date: Thu, 18 Sep 2025 16:16:46 +0200
+Subject: [PATCH] Use TRUE instead of true
+
+Fixes https://gitlab.gnome.org/GNOME/gthumb/-/issues/360
+---
+ extensions/image_rotation/rotation-utils.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/extensions/image_rotation/rotation-utils.c b/extensions/image_rotation/rotation-utils.c
+index c4d55a18..bc213311 100644
+--- a/extensions/image_rotation/rotation-utils.c
++++ b/extensions/image_rotation/rotation-utils.c
+@@ -226,7 +226,7 @@ _apply_transformation_async_thread (GTask        *task,
+ 	else {
+ 		// No changes
+ 		g_free (buffer);
+-		g_task_return_boolean (task, true);
++		g_task_return_boolean (task, TRUE);
+ 		return;
+ 	}
+ 
+@@ -244,7 +244,7 @@ _apply_transformation_async_thread (GTask        *task,
+ 		g_task_return_error (task, error);
+ 	}
+ 	else {
+-		g_task_return_boolean (task, true);
++		g_task_return_boolean (task, TRUE);
+ 	}
+ }
+ 
+-- 
+GitLab
+
