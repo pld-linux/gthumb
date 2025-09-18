@@ -1,12 +1,12 @@
 Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
-Version:	3.12.7
+Version:	3.12.8
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
 Source0:	https://download.gnome.org/sources/gthumb/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	95599cb8b01725d14d171da839a5bb88
+# Source0-md5:	76774d4145ce93d72b017a1dc263e085
 Patch0:		time-type.patch
 URL:		https://wiki.gnome.org/Apps/Gthumb
 BuildRequires:	AppStream-devel >= 0.14.6
@@ -25,9 +25,6 @@ BuildRequires:	gsettings-desktop-schemas-devel
 BuildRequires:	gstreamer-devel >= 1.0.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
 BuildRequires:	gtk+3-devel >= 3.16
-# webkit2gtk-4.0 or webkit2-3.0; libsoup3 is not supported yet
-BuildRequires:	gtk-webkit4-devel >= 1.10.0
-BuildRequires:	json-glib-devel >= 0.16
 BuildRequires:	lcms2-devel >= 2.6
 BuildRequires:	libchamplain-devel >= 0.12
 BuildRequires:	libheif-devel >= 1.11
@@ -36,8 +33,6 @@ BuildRequires:	libjxl-devel >= 0.3.0
 BuildRequires:	libpng-devel
 BuildRequires:	libraw-devel >= 0.14
 BuildRequires:	librsvg-devel >= 2.34.0
-BuildRequires:	libsecret-devel >= 0.11
-BuildRequires:	libsoup-devel >= 2.42
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2
@@ -62,15 +57,11 @@ Requires:	exiv2-libs >= 0.21
 Requires:	glib2 >= 1:2.54.0
 Requires:	gsettings-desktop-schemas
 Requires:	gtk+3 >= 3.16
-Requires:	gtk-webkit4 >= 1.10.0
 Requires:	hicolor-icon-theme
-Requires:	json-glib >= 0.16
 Requires:	lcms2 >= 2.6
 Requires:	libchamplain >= 0.12
 Requires:	libjxl >= 0.3.0
 Requires:	librsvg >= 2.34.0
-Requires:	libsecret >= 0.11
-Requires:	libsoup >= 2.42
 Requires:	libwebp >= 0.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -148,12 +139,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.gnome.gthumb.enums.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.gthumb.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.gthumb.*.gschema.xml
-%{_datadir}/metainfo/org.gnome.gThumb.appdata.xml
+%{_datadir}/metainfo/org.gnome.gThumb.metainfo.xml
 %{_desktopdir}/org.gnome.gThumb.desktop
 %{_desktopdir}/org.gnome.gThumb.Import.desktop
 %{_iconsdir}/hicolor/*x*/apps/org.gnome.gThumb.png
-# XXX: wrong dir
-%{_iconsdir}/hicolor/16x16/apps/org.gnome.gThumb-symbolic.svg
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.gThumb-symbolic.svg
 %{_iconsdir}/hicolor/scalable/apps/org.gnome.gThumb.svg
 %{_mandir}/man1/gthumb.1*
 
