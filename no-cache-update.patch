@@ -1,0 +1,15 @@
+--- gthumb-3.12.8.2/meson.build.orig	2025-11-30 20:56:01.000000000 +0100
++++ gthumb-3.12.8.2/meson.build	2026-01-14 11:22:40.397379763 +0100
+@@ -55,9 +55,9 @@
+ endif
+ 
+ gnome.post_install(
+-  glib_compile_schemas: true,
+-  gtk_update_icon_cache: true,
+-  update_desktop_database: true,
++  glib_compile_schemas: false,
++  gtk_update_icon_cache: false,
++  update_desktop_database: false,
+ )
+ 
+ # Dependencies

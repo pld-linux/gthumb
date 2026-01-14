@@ -8,6 +8,7 @@ Group:		X11/Applications/Graphics
 Source0:	https://download.gnome.org/sources/gthumb/3.12/%{name}-%{version}.tar.xz
 # Source0-md5:	d36668a6b274942a22cc96ded9726d07
 Patch0:		time-type.patch
+Patch1:		no-cache-update.patch
 URL:		https://wiki.gnome.org/Apps/Gthumb
 BuildRequires:	AppStream-devel >= 0.14.6
 BuildRequires:	automake
@@ -93,6 +94,7 @@ rozszerzeń gThumb.
 %prep
 %setup -q
 %patch -P 0 -p1
+%patch -P 1 -p1
 
 %build
 %meson \
