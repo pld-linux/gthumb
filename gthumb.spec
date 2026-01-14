@@ -37,7 +37,7 @@ BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libwebp-devel >= 0.2.0
-BuildRequires:	meson >= 0.48
+BuildRequires:	meson >= 0.59
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.23
