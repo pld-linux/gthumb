@@ -2,7 +2,7 @@ Summary:	An image viewer and browser for GNOME
 Summary(pl.UTF-8):	Przeglądarka obrazków dla GNOME
 Name:		gthumb
 Version:	3.12.11
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications/Graphics
 Source0:	https://download.gnome.org/sources/gthumb/3.12/%{name}-%{version}.tar.xz
@@ -17,7 +17,6 @@ BuildRequires:	brasero-devel >= 3.2.0
 BuildRequires:	clutter-devel >= 1.12.0
 BuildRequires:	clutter-gtk-devel >= 1.0.0
 BuildRequires:	colord-devel >= 1.3
-BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exiv2-devel >= 0.21
 BuildRequires:	flex
 BuildRequires:	gettext-tools
@@ -36,7 +35,6 @@ BuildRequires:	libraw-devel >= 0.14
 BuildRequires:	librsvg-devel >= 2.34.0
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtiff-devel
-BuildRequires:	libtool >= 2:2
 BuildRequires:	libwebp-devel >= 0.2.0
 BuildRequires:	meson >= 0.59
 BuildRequires:	ninja >= 1.5
